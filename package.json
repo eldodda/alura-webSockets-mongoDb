@@ -1,0 +1,33 @@
+{
+  "name": "alura-websockets-mongodb",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon src/socket-back.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/eldodda/alura-webSockets-mongoDb.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "bugs": {
+    "url": "https://github.com/eldodda/alura-webSockets-mongoDb/issues"
+  },
+  "homepage": "https://github.com/eldodda/alura-webSockets-mongoDb#readme",
+  "dependencies": {
+    "express": "^4.22.1",
+    "socket.io": "^4.8.3"
+  },
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "@stylistic/eslint-plugin": "^5.10.0",
+    "eslint": "^10.0.3",
+    "globals": "^17.4.0",
+    "nodemon": "^2.0.22"
+  }
+}
