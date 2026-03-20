@@ -1,5 +1,5 @@
 /* eslint-disable no-undef */
-import { inserirLinkDocumento, removerLinkDoc } from "./index.js";
+import { inserirLinkDocumento, removerLinkDocumento } from "./index.js";
 
 const socket = io();
 
@@ -9,21 +9,20 @@ socket.emit("obter_documentos", (documentos) => {
 	});
 });
 
-function emitirAdicionarDoc(nome) {
-	socket.emit("adicionar_doc", nome);
-};
+function emitirAdicionarDocumento(nome) {
+	socket.emit("adicionar_documento", nome);
+}
 
-socket.on("adicionar_doc_interface", (nome) => {
+socket.on("adicionar_documento_interface", (nome) => {
 	inserirLinkDocumento(nome);
 });
 
-socket.on("doc_existente", (nome) => {
-	alert(`O documento ${nome} já existe.`);
-	
+socket.on("documento_existente", (nome) => {
+	alert(`O documento ${nome} já existe!`);
 });
 
-socket.on("excluir_doc_ok", (nome) => {
-	removerLinkDoc(nome);
+socket.on("excluir_documento_sucesso", (nome) => {
+	removerLinkDocumento(nome);
 });
 
-export { emitirAdicionarDoc };
+export { emitirAdicionarDocumento };

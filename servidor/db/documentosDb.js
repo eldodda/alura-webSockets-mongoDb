@@ -8,40 +8,47 @@ function obterDocumentos() {
 function adicionarDocumento(nome) {
 	const resultado = documentosColecao.insertOne({
 		nome,
-		texto: ""
+		texto: "",
 	});
+
 	return resultado;
 }
 
 function encontrarDocumento(nome) {
 	const documento = documentosColecao.findOne({
-		nome
+		nome,
 	});
+
 	return documento;
 }
 
 function atualizaDocumento(nome, texto) {
-	const atualizacao = documentosColecao.updateOne({
-		nome
-	}, {
-		$set: {
-			texto
+	const atualizacao = documentosColecao.updateOne(
+		{
+			nome,
+		},
+		{
+			$set: {
+				texto,
+			},
 		}
-	});
+	);
+
 	return atualizacao;
 }
 
-function excluirDoc(nome) {
+function excluirDocumento(nome) {
 	const resultado = documentosColecao.deleteOne({
-		nome
+		nome,
 	});
+
 	return resultado;
 }
 
-export { 
-	encontrarDocumento, 
-	atualizaDocumento, 
-	obterDocumentos, 
-	adicionarDocumento, 
-	excluirDoc 
+export {
+	encontrarDocumento,
+	atualizaDocumento,
+	obterDocumentos,
+	adicionarDocumento,
+	excluirDocumento,
 };

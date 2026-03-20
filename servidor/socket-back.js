@@ -1,20 +1,29 @@
-import { encontrarDocumento, atualizaDocumento, obterDocumentos, adicionarDocumento, excluirDoc } from "./documentosDb.js";
+import {
+	adicionarDocumento,
+	atualizaDocumento,
+	encontrarDocumento,
+	excluirDocumento,
+	obterDocumentos,
+} from "./db/documentosDb.js";
 import io from "./servidor.js";
 
 io.on("connection", (socket) => {
 	socket.on("obter_documentos", async (devolverDocumentos) => {
 		const documentos = await obterDocumentos();
+
 		devolverDocumentos(documentos);
 	});
 
-	socket.on("adicionar_doc", async (nome) => {
-		const docExiste = (await encontrarDocumento(nome)) !== null;
-		if (docExiste) {
-			socket.emit("doc_existente", nome);
+	socket.on("adicionar_documento", async (nome) => {
+		const documentoExiste = (await encontrarDocumento(nome)) !== null;
+
+		if (documentoExiste) {
+			socket.emit("documento_existente", nome);
 		} else {
-			const resultado = await adicionarDocumento(nome);	
+			const resultado = await adicionarDocumento(nome);
+
 			if (resultado.acknowledged) {
-				io.emit("adicionar_doc_interface", nome);
+				io.emit("adicionar_documento_interface", nome);
 			}
 		}
 	});
@@ -23,7 +32,7 @@ io.on("connection", (socket) => {
 		socket.join(nomeDocumento);
 
 		const documento = await encontrarDocumento(nomeDocumento);
-		
+
 		if (documento) {
 			devolverTexto(documento.texto);
 		}
@@ -31,18 +40,17 @@ io.on("connection", (socket) => {
 
 	socket.on("texto_editor", async ({ texto, nomeDocumento }) => {
 		const atualizacao = await atualizaDocumento(nomeDocumento, texto);
-		
+
 		if (atualizacao.modifiedCount) {
 			socket.to(nomeDocumento).emit("texto_editor_clientes", texto);
 		}
 	});
 
 	socket.on("excluir_documento", async (nome) => {
-		const resultado = await excluirDoc(nome);
+		const resultado = await excluirDocumento(nome);
+
 		if (resultado.deletedCount) {
-			io.emit("excluir_doc_ok", nome);
-		}		
+			io.emit("excluir_documento_sucesso", nome);
+		}
 	});
-
 });
-
