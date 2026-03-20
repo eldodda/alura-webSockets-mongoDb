@@ -1,5 +1,5 @@
 {
-  "name": "alura-docs",
+  "name": "alura-websockets-mongodb",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -10,21 +10,26 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/antonio-evaldo/alura-docs.git"
+    "url": "git+https://github.com/eldodda/alura-webSockets-mongoDb.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/antonio-evaldo/alura-docs/issues"
+    "url": "https://github.com/eldodda/alura-webSockets-mongoDb/issues"
   },
-  "homepage": "https://github.com/antonio-evaldo/alura-docs#readme",
+  "homepage": "https://github.com/eldodda/alura-webSockets-mongoDb#readme",
   "dependencies": {
-    "express": "^4.18.2",
-    "mongodb": "4.11",
-    "socket.io": "^4.5.3"
+    "dotenv": "^17.3.1",
+    "express": "^4.22.1",
+    "mongodb": "7.1",
+    "socket.io": "^4.8.3"
   },
   "devDependencies": {
-    "nodemon": "^2.0.20"
+    "@eslint/js": "^10.0.1",
+    "@stylistic/eslint-plugin": "^5.10.0",
+    "eslint": "^10.0.3",
+    "globals": "^17.4.0",
+    "nodemon": "^2.0.22"
   }
 }
