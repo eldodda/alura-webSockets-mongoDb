@@ -1,5 +1,5 @@
 /* eslint-disable no-undef */
-import { atualizaTextoEditor } from "./documento.js";
+import { alertaRedirect, atualizaTextoEditor } from "./documento.js";
 
 const socket = io();
 
@@ -16,5 +16,14 @@ function emitirTextoEditor(dados) {
 socket.on("texto_editor_clientes", (texto) => {
 	atualizaTextoEditor(texto);
 });
+
+function emitirExcluir(nome) {
+	socket.emit("excluir_documento", nome);
+}
+
+socket.on("excluir_doc_ok", (nome) => {
+	alertaRedirect(nome);
+});
+
 	
-export { emitirTextoEditor, selecionarDocumento };
+export { emitirTextoEditor, selecionarDocumento, emitirExcluir };
