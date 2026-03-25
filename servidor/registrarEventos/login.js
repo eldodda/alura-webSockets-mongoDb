@@ -8,7 +8,7 @@ function registrarEventosLogin(socket, io) {
 		if (usuario) {
 			const autenticado = autenticarUsuario(senha, usuario);
 			if (autenticado) {
-				const tokenJwt = gerarJwt({ nomeUsu: nome });
+				const tokenJwt = gerarJwt({ nomeUsuario: nome });
 				socket.emit("autenticacao_sucesso", tokenJwt);
 			} else {
 				socket.emit("autenticacao_erro");

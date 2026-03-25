@@ -12,6 +12,7 @@ nspUsuarios.use(autorizarUsuario);
 nspUsuarios.on("connection", (socket) => {
 	registrarEventosInicio(socket, nspUsuarios);
 	registrarEventosDocumento(socket, nspUsuarios);
+	socket.emit("autorizacao_sucesso", socket.payloadToken);
 });
 
 io.of("/").on("connection", (socket) => {
